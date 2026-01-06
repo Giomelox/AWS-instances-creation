@@ -175,14 +175,11 @@ Wait a few seconds and check that the instance status is Healthy.
 
 
 
-#!/bin/bash
-yum update -y
-yum install -y httpd
-echo "OK - EC2 funcionando" > /var/www/html/index.html
-systemctl enable httpd
-systemctl start httpd
-sed -i 's/Listen 80/Listen 8080/' /etc/httpd/conf/httpd.conf
-systemctl restart httpd
+sudo yum install -y httpd
+sudo sed -i 's/Listen 80/Listen 3001/' /etc/httpd/conf/httpd.conf
+echo "OK - Aplicação funcionando" | sudo tee /var/www/html/index.html
+sudo systemctl enable httpd
+sudo systemctl start httpd
 
 sudo netstat -tuln | grep 3001
 
