@@ -38,14 +38,26 @@ In this step, we will use four tools:
 3. Load Balancers
 4. Instances
 
+## Target Group
 
+This step is simple. First, set the target type to Instances and choose a name for your target group.
 
+Set the protocol to 'HTTP'.
 
+WARNING: This step is very important. You need to choose a port for your target group, and this port must match the listener port of your instance. In this example, we will use port 3001.
+This configuration will be performed using PowerShell on our instance.
 
+Select the IPv4 IP address type.
 
+Select the previously created VPC
 
+Select the 'HTTP1' protocol version
 
+<img width="1042" height="654" alt="image" src="https://github.com/user-attachments/assets/7aec4bcb-607e-4637-bc92-827b44f96087" />
 
+For the health checks and the remaining settings, leave the defaults.
+
+You can go next and create the target group.
 
 ## Security Groups
 
