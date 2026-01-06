@@ -33,9 +33,9 @@ I did not modify the private route table because my EC2 instances are located in
 
 # Main Configuration
 In this step, we will use four tools: 
-1. Target Group
-2. Security Groups
-3. Load Balancers
+1. Target Group                    Falta incluir a instancia
+2. Security Groups                 FEITO
+3. Load Balancers                  FEITO
 4. Instances
 
 ## Target Group
@@ -61,14 +61,31 @@ You can go next and create the target group.
 
 ## Security Groups
 
-First, we will create a Security Group (SG) for our ELB (Elastic Load Balancer).
+### First, we will create a Security Group (SG) for our ELB (Elastic Load Balancer).
 
 Choose a name for your Security Group, in this case 'ELB-security-group'.
 Provide a description for this SG and select the previously created VPC.
 
-In 'Inbound rules', add the following rules::
+In 'Inbound rules', add the following rules:
 
 <img width="1359" height="390" alt="image" src="https://github.com/user-attachments/assets/847f3d2b-5507-41dd-8e9c-46c03ab53745" />
+
+In 'Outbound rules', add a rule allowing all traffic:
+
+Type: All traffic | Destination: Custom | IP Range: 0.0.0.0/0
+
+### Now we will create a Security Group (SG) for our EC2 instance.
+
+Choose a name for your Security Group, in this case 'main-security-group-ec2'.
+Provide a description for this SG and select the previously created VPC.
+
+In 'Inbound rules', add the following rules:
+
+(For SSH, set the source to your IP address by selecting the My IP option)
+
+(For Custom TCP, set the source to the previously created security group, 'ELB-security-group')
+
+<img width="1340" height="296" alt="image" src="https://github.com/user-attachments/assets/7af768c9-2fc0-4ce5-8ab0-8ba9d68348ef" />
 
 In 'Outbound rules', add a rule allowing all traffic:
 
@@ -109,6 +126,17 @@ Select a key pair. If you do not have one, create a new key pair using the RSA k
 
 <img width="584" height="571" alt="image" src="https://github.com/user-attachments/assets/3fd6d534-61c4-4d1d-9a53-a27697dc4945" />
 
-Now we will entry on network settings, first select the VPC that we created before and select a public subnet. Next, enable the auto-assign public IP
+Now we will entry on network settings, click in 'Edit'
+
+First select the previously created VPC and select a public subnet. Next, enable the auto-assign public IP.
+
+Set the 'Select existing security group' and choose the 'main-security-group-ec2' SG.
+
+<img width="867" height="601" alt="image" src="https://github.com/user-attachments/assets/3cd9e3b4-5569-4a07-b2b0-98be74b98558" />
+
+And launch instance.
+
+
+
 
 
