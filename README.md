@@ -1,6 +1,8 @@
-## Before starting, it is important to note that the AWS Region used is US East (Ohio) – us-east-2.
+### Before starting, it is important to note that the AWS Region used is US East (Ohio) – us-east-2.
 
 # Initial Configuration
+
+
 
 ## VPC
 I created a VPC with a manually defined IPv4 CIDR block set to 10.0.0.0/24.
@@ -10,6 +12,7 @@ I created a VPC with a manually defined IPv4 CIDR block set to 10.0.0.0/24.
 Next, I chose the option that does not include an IPv6 CIDR block and selected Default Tenancy.
 
 <img width="1328" height="555" alt="image" src="https://github.com/user-attachments/assets/738f3a89-7578-491c-bcf7-0c6fd9b3f17f" />
+
 
 
 ## Subnets
@@ -24,19 +27,25 @@ The main difference between the subnets is the IPv4 CIDR block. The CIDR blocks 
 3. Public 2a: 10.0.0.0/26
 4. Private 2a: 10.0.0.64/26
 
-###  Internet Gateway + Route tables
+
+
+##  Internet Gateway + Route tables
 In this step, I first created an internet gateway and, under Actions, attached it to the VPC.
 
 Next, I created two route tables: one public and one private. In the public route table, I edited the routes to include the previously created Internet Gateway with the destination 0.0.0.0/0.
 
 I did not modify the private route table because my EC2 instances are located in a public subnet.
 
+
+
 # Main Configuration
 In this step, we will use four tools: 
-1. Target Group                    Falta incluir a instancia
-2. Security Groups                 FEITO
-3. Load Balancers                  FEITO
+1. Target Group
+2. Security Groups
+3. Load Balancers
 4. Instances
+
+
 
 ## Target Group
 
@@ -58,6 +67,8 @@ Select the 'HTTP1' protocol version
 For the health checks and the remaining settings, leave the defaults.
 
 You can go next and create the target group.
+
+
 
 ## Security Groups
 
@@ -91,6 +102,8 @@ In 'Outbound rules', add a rule allowing all traffic:
 
 Type: All traffic | Destination: Custom | IP Range: 0.0.0.0/0
 
+
+
 ## Load Balancer
 Select the ELB type: Application Load Balancer and choose a name, in this case: 'main-ELB'
 
@@ -109,6 +122,8 @@ In 'Listeners and routing', set the protocol to 'HTTP' and the port to '80'.
 Set the routing action to 'Forward to target group' and select the previously created target group.
 
 And create your load balancer.
+
+
 
 ## Instances
 I will not go into advanced details about this service; only the basic settings will be used to create the instance.
@@ -135,6 +150,26 @@ Set the 'Select existing security group' and choose the 'main-security-group-ec2
 <img width="867" height="601" alt="image" src="https://github.com/user-attachments/assets/3cd9e3b4-5569-4a07-b2b0-98be74b98558" />
 
 And launch instance.
+
+
+
+## Target Group
+
+Go back to the Target Groups screen and select the target group you created.
+
+Next, go to the Targets tab in the navigation bar and click 'Register targets'.
+
+<img width="1117" height="542" alt="image" src="https://github.com/user-attachments/assets/8c353dc2-234b-4536-b9a8-9eeb2ae657b5" />
+
+Select your instance, set the port to '3001', and mark it as pending.
+
+<img width="1361" height="545" alt="image" src="https://github.com/user-attachments/assets/cad3daa8-fb03-494c-8a88-f2d3ee57cba2" />
+
+Then, register the pending targets.
+
+Wait a few seconds and check that the instance status is Healthy.
+
+<img width="1130" height="358" alt="image" src="https://github.com/user-attachments/assets/e9a0a764-99e4-434f-b2d7-bd1d3b189a77" />
 
 
 
