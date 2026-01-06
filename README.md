@@ -2,7 +2,9 @@
 
 # Creating a VPC
 I created a VPC with a manually defined IPv4 CIDR block set to 10.0.0.0/24.
-<img width="948" height="378" alt="image" src="https://github.com/user-attachments/assets/d0befb97-2e9f-42d4-81a7-402f7c0ee0b0" />
+<img width="985" height="386" alt="image" src="https://github.com/user-attachments/assets/4474d5f5-5307-4b9a-9005-51cf11cf8bb4" />
 
 Next, I chose the option that does not include an IPv6 CIDR block and selected Default Tenancy.
-<img width="962" height="345" alt="image" src="https://github.com/user-attachments/assets/6c1dfe6f-74b0-4fed-9a2f-576714e3ca8e" />
+<img width="1328" height="555" alt="image" src="https://github.com/user-attachments/assets/738f3a89-7578-491c-bcf7-0c6fd9b3f17f" />
+
+# Creating Subnets
