@@ -1,5 +1,6 @@
-# Initial Configuration
+## Before starting, it is important to note that the AWS Region used is US East (Ohio) – us-east-2.
 
+# Initial Configuration
 
 ## VPC
 I created a VPC with a manually defined IPv4 CIDR block set to 10.0.0.0/24.
@@ -20,9 +21,73 @@ The main difference between the subnets is the IPv4 CIDR block. The CIDR blocks 
 3. Public 2a: 10.0.0.0/26
 4. Private 2a: 10.0.0.64/26
 
-##  Internet Gateway + Route tables
+###  Internet Gateway + Route tables
 In this step, I first created an internet gateway and, under Actions, attached it to the VPC.
 
 Next, I created two route tables: one public and one private. In the public route table, I edited the routes to include the previously created Internet Gateway with the destination 0.0.0.0/0.
 
 I did not modify the private route table because my EC2 instances are located in a public subnet.
+
+# Main Configuration
+In this step, we will use four tools: 
+1. Target Group
+2. Security Groups
+3. Load Balancers
+4. Instances
+
+
+
+
+
+
+
+
+
+
+## Security Groups
+
+First, we will create a Security Group (SG) for our ELB (Elastic Load Balancer).
+
+Choose a name for your Security Group, in this case 'ELB-security-group'.
+Provide a description for this SG and select the previously created VPC.
+
+In 'Inbound rules', add the following rules::
+<img width="1359" height="390" alt="image" src="https://github.com/user-attachments/assets/847f3d2b-5507-41dd-8e9c-46c03ab53745" />
+
+In 'Outbound rules', add a rule allowing all traffic:
+
+Type: All traffic | Destination: Custom | IP Range: 0.0.0.0/0
+
+## Load Balancer
+Select the ELB type: Application Load Balancer and choose a name, in this case: 'main-ELB'
+
+The scheme is set to 'internet-facing', and the IP address type is IPv4.
+<img width="1304" height="505" alt="image" src="https://github.com/user-attachments/assets/31f84cf9-618d-4980-8b59-a6920cc39b43" />
+
+Below, select the previously created VPC and choose the two public subnets.
+Note that if a private subnet is selected, a warning about denied public access will appear. This occurs because only public subnets have a route to the Internet Gateway.
+<img width="1314" height="608" alt="image" src="https://github.com/user-attachments/assets/b563b06e-c84e-4e57-b17b-755391b1323a" />
+
+Now, choose the previously created security group, 'ELB-security-group'.
+
+In 'Listeners and routing', set the protocol to 'HTTP' and the port to '80'.
+Set the routing action to 'Forward to target group' and select the previously created target group.
+
+And create your load balancer.
+
+## Instances
+I will not go into advanced details about this service; only the basic settings will be used to create the instance.
+
+First, set a name for your instance, such as 'main-ec2-instance'. Next, choose an OS image. In this example, 'Amazon Linux' is used, which is eligible for the AWS Free Tier.
+<img width="866" height="612" alt="image" src="https://github.com/user-attachments/assets/c1d533a6-7fbe-4fbd-ad09-6cb1908aaf1d" />
+
+The instance type used is 't3.micro', which is eligible for the AWS Free Tier. You may use a different instance type, but be careful with the associated costs.
+<img width="856" height="235" alt="image" src="https://github.com/user-attachments/assets/4430a709-ac55-4334-b206-277848ab5109" />
+
+Select a key pair. If you do not have one, create a new key pair using the RSA key type and the .pem file format. 
+!!! After creation, the key pair will be downloaded automatically. Make sure to store it securely, as it cannot be downloaded again. !!!
+<img width="584" height="571" alt="image" src="https://github.com/user-attachments/assets/3fd6d534-61c4-4d1d-9a53-a27697dc4945" />
+
+Now we will entry on network settings, first select the VPC that we created before and select a public subnet. Next, enable the auto-assign public IP
+
+
