@@ -230,4 +230,4 @@ The following message should appear:
 tcp6       0      0 :::3001                 :::*                    LISTEN
 `````
 
-Now you can copy the public DNS of your EC2 instance into your browser to view your service running :)
+Now you can copy the public DNS of your ELB (Not your EC2 instance) into your browser to view your service running :)
