@@ -270,3 +270,6 @@ Finally, you can go back to your targt Groups and refresh the registered targets
 I added my HTML and CSS code to the EC2 instance using PowerShell. For this setup, the content will be different, but your public DNS should display the phrase: 'OK - It Works!'
 <img width="1910" height="993" alt="image" src="https://github.com/user-attachments/assets/36c82c2c-f2df-43fb-972a-aa17d3c010ae" />
 
+<img width="2288" height="993" alt="image" src="https://github.com/user-attachments/assets/931b3dec-5672-4f38-b053-508f2dcc348c" />
+
+
