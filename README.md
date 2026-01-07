@@ -64,7 +64,7 @@ Select the 'HTTP1' protocol version
 
 <img width="1042" height="654" alt="image" src="https://github.com/user-attachments/assets/7aec4bcb-607e-4637-bc92-827b44f96087" />
 
-For the health checks and the remaining settings, leave the defaults.
+For the health check path, type '/index.html', and the remaining settings, leave the defaults.
 
 You can go next and create the target group.
 
