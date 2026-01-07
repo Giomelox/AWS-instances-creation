@@ -231,3 +231,7 @@ tcp6       0      0 :::3001                 :::*                    LISTEN
 `````
 
 Now you can copy the public DNS of your ELB (Not your EC2 instance) into your browser to view your service running :)
+
+I added my HTML and CSS code to the EC2 instance using PowerShell. For this setup, the content will be different, but your public DNS should display the phrase: 'OK - Aplicação funcionando'
+<img width="1910" height="993" alt="image" src="https://github.com/user-attachments/assets/36c82c2c-f2df-43fb-972a-aa17d3c010ae" />
+
