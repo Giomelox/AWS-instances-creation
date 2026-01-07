@@ -187,12 +187,20 @@ Open PowerShell and navigate to the folder containing your key pair file. For ex
 Once in the correct folder, you can use the key pair to connect to your EC2 instance. Use the following command, replacing filename.pem with your key file name and public_EC2_IP with your instance's public IP address:
 `````ssh -i filename.pem ec2-user@public_EC2_IP`````
 
+Next, type 'yes' to open the connection with your EC2 instance.
+
+Now, we need to start a server that listens on port 3001. To do this, type the following command:
+
+`````
 sudo yum install -y httpd
 sudo sed -i 's/Listen 80/Listen 3001/' /etc/httpd/conf/httpd.conf
 echo "OK - Aplicação funcionando" | sudo tee /var/www/html/index.html
 sudo systemctl enable httpd
 sudo systemctl start httpd
+`````
 
-sudo netstat -tuln | grep 3001
+Wait a few seconds, then type the following command to ensure that the port is being listened on port 3001:
+
+`````sudo netstat -tuln | grep 3001`````
 
 
