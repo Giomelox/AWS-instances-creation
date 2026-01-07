@@ -183,7 +183,7 @@ Install the SSH connection in your local computer if you dont have.
 Now we need of the pair keys (the file that the EC2 was downloaded before).
 
 Open the PowerShell and type this command to navigate to the downloads files (or navigate until your pair keys file):
-cd C:\Users\your_username\Downloads````` 
+`````cd C:\Users\your_username\Downloads````` 
 
 sudo yum install -y httpd
 sudo sed -i 's/Listen 80/Listen 3001/' /etc/httpd/conf/httpd.conf
