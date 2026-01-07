@@ -174,16 +174,18 @@ Wait a few seconds and check that the instance status is Healthy.
 
 # Testing the instance
 
-We will start a service inside of our EC2 instance, because without a service listening the 3001 port, we cant access the instance.
+We will start a service inside our EC2 instance. Without a service listening on port 3001, we will not be able to access the instance.
+For this step, you need to perform it on Windows OS (or follow the steps on your OS, adjusting the commands accordingly).
 
-For this step, you need to do in a Windows OS (or follow the steps changing conform your OS).
+If you do not have an SSH client installed on your local computer, install one first. (It´s easy)
+You will also need the key pair file that was downloaded when the EC2 instance was created.
 
-Install the SSH connection in your local computer if you dont have.
+Open PowerShell and navigate to the folder containing your key pair file. For example:
 
-Now we need of the pair keys (the file that the EC2 was downloaded before).
+`````cd C:\Users\your_username\Downloads`````
 
-Open the PowerShell and type this command to navigate to the downloads files (or navigate until your pair keys file):
-`````cd C:\Users\your_username\Downloads````` 
+Once in the correct folder, you can use the key pair to connect to your EC2 instance. Use the following command, replacing filename.pem with your key file name and public_EC2_IP with your instance's public IP address:
+`````ssh -i filename.pem ec2-user@public_EC2_IP`````
 
 sudo yum install -y httpd
 sudo sed -i 's/Listen 80/Listen 3001/' /etc/httpd/conf/httpd.conf
