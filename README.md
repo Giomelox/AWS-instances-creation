@@ -167,9 +167,10 @@ Select your instance, set the port to '3001', and mark it as pending.
 
 Then, register the pending targets.
 
-Wait a few seconds and check that the instance status is Healthy.
+Wait a few seconds and check that the instance status, probably is Unhealthy.
 
-<img width="1130" height="358" alt="image" src="https://github.com/user-attachments/assets/e9a0a764-99e4-434f-b2d7-bd1d3b189a77" />
+<img width="1295" height="354" alt="image" src="https://github.com/user-attachments/assets/1a5bfc44-41a7-49ef-a322-bc40801289b6" />
+
 
 
 # Testing the instance
