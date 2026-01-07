@@ -198,7 +198,7 @@ Now, we need to start a server that listens on port 3001. To do this, type the f
 `````
 sudo yum install -y httpd
 sudo sed -i 's/Listen 80/Listen 3001/' /etc/httpd/conf/httpd.conf
-echo "OK - Aplicação funcionando" | sudo tee /var/www/html/index.html
+echo "OK - It Works!" | sudo tee /var/www/html/index.html
 sudo systemctl enable httpd
 sudo systemctl start httpd
 `````
@@ -213,16 +213,27 @@ The following message should appear:
 `````
 tcp6       0      0 :::3001                 :::*                    LISTEN
 `````
+If the message appear, congrats! you can copy the public DNS of your ELB (Not your EC2 instance) into your browser to view your service running :)
 
-If the message does not appear, it is likely that the server is not listening on port 3001. In that case, you will need to change it manually by editing the configuration file:
+Else, it is likely that the server is not listening on port 3001. In that case, you will need to change it manually by editing the configuration file:
 `````
 sudo nano /etc/httpd/conf/httpd.conf
 `````
 
-And after change the port, type again:
+<img width="530" height="105" alt="image" src="https://github.com/user-attachments/assets/53fd7ceb-8650-451f-8cf2-53b152027193" />
+
+And after change the port, type Ctrl + O and Enter to save the changes, next type Ctrl + X to close the file window.
+
+Now type the following commands to start the service:
 `````
 sudo systemctl enable httpd
+`````
+`````
 sudo systemctl start httpd
+`````
+
+Type this command to ensure that the port is being listened on port 3001:
+`````
 sudo netstat -tuln | grep 3001
 `````
 
@@ -231,8 +242,31 @@ The following message should appear:
 tcp6       0      0 :::3001                 :::*                    LISTEN
 `````
 
+Next, type the following command to add a index.html file:
+
+`````
+echo "OK - It Works!" | sudo tee /var/www/html/index.html
+`````
+
+If you want to modify the HTML code, type the following command to open the .html file. After making your changes, press Ctrl + O and Enter to save, then press Ctrl + X to exit the editor.
+`````
+sudo nano /var/www/html/index.html
+`````
+
+And if you want to add a CSS code, type the following command to open the .html file. After making your changes, press Ctrl + O and Enter to save, then press Ctrl + X to exit the editor.
+`````
+sudo nano /var/www/html/styles.css
+`````
+
 Now you can copy the public DNS of your ELB (Not your EC2 instance) into your browser to view your service running :)
 
-I added my HTML and CSS code to the EC2 instance using PowerShell. For this setup, the content will be different, but your public DNS should display the phrase: 'OK - Aplicação funcionando'
+Repeat the steps with another EC2 instance and update the index.html content. You will then see the ELB in action when you refresh the page, as it will distribute traffic between the instances.
+
+Finally, you can go back to your targt Groups and refresh the registered targets, and you will see the Healthy status.
+
+<img width="1296" height="354" alt="image" src="https://github.com/user-attachments/assets/ccf8eed7-597d-4a81-af07-3981a97e811d" />
+
+
+I added my HTML and CSS code to the EC2 instance using PowerShell. For this setup, the content will be different, but your public DNS should display the phrase: 'OK - It Works!'
 <img width="1910" height="993" alt="image" src="https://github.com/user-attachments/assets/36c82c2c-f2df-43fb-972a-aa17d3c010ae" />
 
