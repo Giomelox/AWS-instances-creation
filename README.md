@@ -172,8 +172,18 @@ Wait a few seconds and check that the instance status is Healthy.
 <img width="1130" height="358" alt="image" src="https://github.com/user-attachments/assets/e9a0a764-99e4-434f-b2d7-bd1d3b189a77" />
 
 
+# Testing the instance
 
+We will start a service inside of our EC2 instance, because without a service listening the 3001 port, we cant access the instance.
 
+For this step, you need to do in a Windows OS (or follow the steps changing conform your OS).
+
+Install the SSH connection in your local computer if you dont have.
+
+Now we need of the pair keys (the file that the EC2 was downloaded before).
+
+Open the PowerShell and type this command to navigate to the downloads files (or navigate until your pair keys file):
+cd C:\Users\your_username\Downloads````` 
 
 sudo yum install -y httpd
 sudo sed -i 's/Listen 80/Listen 3001/' /etc/httpd/conf/httpd.conf
